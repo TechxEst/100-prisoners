@@ -1,6 +1,5 @@
 # 100-prisoners
-## This is a model of the 100 prisoners riddle explained by Derek Muller on his Veritasium channel here:
-## https://youtu.be/iSNsgj1OCLA
+## This is a model of the 100 prisoners riddle explained by Derek Muller on his Veritasium channel [here](https://youtu.be/iSNsgj1OCLA)
 
 ## Function1 runs the riddle with each prisoner starting at the box number corresponding to their prison number
 ### returns one value: either "live" or "die"
