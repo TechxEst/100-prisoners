@@ -2,8 +2,10 @@ import random
 import matplotlib.pyplot as plt
 import numpy as np
 
-prisoners = list(range(1, 101, 1)) 
+prisoners_100 = list(range(1, 101, 1)) 
+boxes_100 = list(range(1, 101, 1)) 
 live_or_die = []
+
 
 # this function models 100 prisoners going in to check 50 (out of 100) boxes 
 # starting with the box that matches their prison number
@@ -16,10 +18,9 @@ live_or_die = []
 # and all prisoners will die and that is one prison where everyone dies
 # returns one of either: "live" or "die"
 
-def onehundred_prisoners (prisoners):                                   # takes a list of 100 prisoners
-    list_100 = list(range(1, 101, 1))                                       
-    boxes = [0]                                                         # index 0 will always be 0
-    boxes = boxes + random.sample(list_100, 100)                        # boxes 0 + random list from 1 - 100                                                                         
+def onehundred_prisoners (prisoners):                                   
+    boxes = [0]
+    boxes = boxes + random.sample (boxes_100, 100)                                                                                              
     live = 0
 
     for prison_number in prisoners:
@@ -30,28 +31,26 @@ def onehundred_prisoners (prisoners):                                   # takes 
         while number_in_box != prison_number and box_count <50:         # while prison number not found in fewer than 50 boxes
             number_in_box = boxes [number_in_box]                       # index position becomes the number in the previous box
             box_count += 1
-        
         if box_count == 50 and number_in_box != prison_number:          # if prison number not found in 50 boxes
             live_or_die.append("die")                                   # add "die" and break from the loop: if one dies, all die
             break
-
         else:
             live += 1                                                   # if live, add 1
             if live == 100:                                             # if all 100 live    
                 live_or_die.append("live")                              # add "live"
-            continue
+            continue 
     
     return live_or_die
 
 
-# this function simulates the 100 prisoners function above 101 times (e.g. 101 prisons)
+# this function simulates the 100 prisoners function 101 times (e.g. 101 prisons)
 # it collates 101 "live" or "die"
 # and finds a percentage of prisons where everyone lives
 # and returns a single percentage
 
 def simulate_prisoners():    
     for i in range (101):                                               # simulate the prisoners function 101 times
-        simulation = onehundred_prisoners(prisoners)
+        simulation = onehundred_prisoners(prisoners_100)
 
     live = live_or_die.count("live")                                    # count the number of "live"
     percent_live = round((live/len(live_or_die)*100.00),2)              # % live (should be approx 30%)
